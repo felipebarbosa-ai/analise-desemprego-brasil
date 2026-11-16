@@ -4,101 +4,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Análise da evolução da taxa de desocupação no Brasil utilizando dados da PNAD Contínua e do IBGE.">
     <title>Análise da Evolução da Taxa de Desocupação no Brasil</title>
 
     <style>
         * {
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.7;
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 25px;
-            color: #333;
-            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            background: #f3f5f8;
+            color: #293444;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.75;
         }
 
-        main {
+        .container {
+            max-width: 1050px;
+            margin: 40px auto;
+            padding: 55px 65px;
             background: white;
-            padding: 40px;
+            box-shadow: 0 3px 18px rgba(0,0,0,0.07);
             border-radius: 8px;
         }
 
-        h1, h2, h3 {
-            color: #17365d;
-        }
-
-        h1 {
+        header {
             text-align: center;
-            line-height: 1.3;
-        }
-
-        h2 {
-            margin-top: 40px;
-            border-bottom: 2px solid #e5e5e5;
-            padding-bottom: 8px;
-        }
-
-        .autores {
-            text-align: center;
-            color: #666;
+            border-bottom: 2px solid #e5e9ef;
+            padding-bottom: 30px;
             margin-bottom: 35px;
         }
 
-        .resumo {
-            background: #f0f4f8;
-            padding: 20px;
-            border-left: 4px solid #17365d;
+        h1 {
+            color: #17365d;
+            font-size: 30px;
+            line-height: 1.35;
+            margin-bottom: 25px;
         }
 
-        .destaque {
+        .autores {
+            font-size: 17px;
             font-weight: bold;
         }
 
-        .figura {
-            margin: 35px 0;
+        .instituicao {
+            color: #667085;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .repositorio {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 18px;
+            background: #17365d;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .repositorio:hover {
+            background: #24558a;
+        }
+
+        h2 {
+            color: #17365d;
+            font-size: 22px;
+            margin-top: 42px;
+            border-bottom: 1px solid #dce2ea;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            color: #24558a;
+            font-size: 18px;
+            margin-top: 28px;
+        }
+
+        p {
+            text-align: justify;
+            margin: 15px 0;
+        }
+
+        .resumo {
+            background: #f6f8fb;
+            padding: 22px;
+            border-left: 4px solid #24558a;
+            margin: 25px 0;
+        }
+
+        .resumo h2 {
+            margin-top: 0;
+            border: none;
+        }
+
+        .palavras-chave {
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .sumario {
+            background: #f8fafc;
+            border: 1px solid #e1e6ed;
+            padding: 22px 28px;
+            margin: 30px 0;
+            border-radius: 6px;
+        }
+
+        .sumario h2 {
+            margin-top: 0;
+            border: none;
+        }
+
+        .sumario ol {
+            padding-left: 25px;
+        }
+
+        .sumario a {
+            color: #24558a;
+            text-decoration: none;
+        }
+
+        .sumario a:hover {
+            text-decoration: underline;
+        }
+
+        figure {
+            margin: 30px auto;
             text-align: center;
         }
 
-        .figura img {
+        figure img {
             width: 100%;
             max-width: 850px;
             height: auto;
-            display: block;
-            margin: 15px auto;
+            border: 1px solid #e5e7eb;
+            border-radius: 5px;
         }
 
-        .legenda {
+        figcaption {
+            font-size: 13px;
+            color: #667085;
+            margin-top: 10px;
+        }
+
+        .destaque {
+            background: #f6f8fb;
+            border-left: 4px solid #24558a;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 22px 0;
             font-size: 14px;
-            color: #666;
+        }
+
+        th, td {
+            border: 1px solid #dce2ea;
+            padding: 11px;
             text-align: center;
+        }
+
+        th {
+            background: #17365d;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f6f8fb;
+        }
+
+        .referencias li {
+            margin-bottom: 14px;
+            text-align: justify;
         }
 
         a {
-            color: #1756a9;
+            overflow-wrap: anywhere;
         }
 
         footer {
-            margin-top: 40px;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid #e5e9ef;
+            margin-top: 45px;
             padding-top: 20px;
-            color: #666;
-            font-size: 14px;
             text-align: center;
+            color: #7b8493;
+            font-size: 13px;
         }
 
-        @media (max-width: 600px) {
-            main {
-                padding: 20px;
+        @media (max-width: 700px) {
+            .container {
+                margin: 0;
+                padding: 25px 18px;
+                border-radius: 0;
             }
 
-            body {
-                margin: 10px auto;
-                padding: 10px;
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            table {
+                font-size: 12px;
             }
         }
     </style>
@@ -106,331 +223,524 @@
 
 <body>
 
-<main>
+<div class="container">
 
     <header>
-        <h1>Análise da Evolução da Taxa de Desocupação no Brasil</h1>
+        <h1>
+            Análise da Evolução da Taxa de Desocupação no Brasil:
+            Uma Aplicação com Dados da PNAD Contínua e Princípios FAIR
+        </h1>
 
         <div class="autores">
-            <p><strong>Felipe Barbosa da Silva e Luis Fernando Dantas</strong></p>
-            <p>Unilasalle</p>
-            <p>Curso de Sistemas de Informação</p>
+            Felipe Barbosa da Silva e Luis Fernando Dantas
         </div>
+
+        <div class="instituicao">
+            Curso de Sistemas de Informação — Unilasalle<br>
+            Disciplina: Análise e Visualização de Dados — 6º Período
+        </div>
+
+        <a class="repositorio"
+           href="https://github.com/felipebarbosa-ai/analise-desemprego-brasil"
+           target="_blank">
+            Ver Repositório GitHub — Código e Dados
+        </a>
     </header>
 
-    <section>
+    <section class="resumo">
         <h2>Resumo</h2>
 
-        <div class="resumo">
-            <p>
-                Este trabalho apresenta uma análise da evolução da taxa de
-                desocupação no Brasil, utilizando dados da Pesquisa Nacional
-                por Amostra de Domicílios Contínua (PNAD Contínua), disponibilizados
-                pelo Instituto Brasileiro de Geografia e Estatística (IBGE),
-                por meio do sistema SIDRA, tabela 4099. O objetivo é identificar
-                o comportamento da desocupação ao longo do período analisado,
-                observar as diferenças entre as médias anuais e identificar
-                os maiores e menores valores registrados. A metodologia
-                caracteriza-se como uma pesquisa quantitativa e descritiva,
-                baseada na coleta, organização, tratamento e análise de dados
-                utilizando Python, Pandas, Matplotlib e Seaborn. Os resultados
-                indicam uma trajetória de redução da taxa entre 2012 e 2014,
-                seguida por um período de crescimento, com valores elevados
-                entre 2016 e 2021. O maior valor observado foi de 14,9%,
-                no terceiro trimestre de 2020. Após esse período, identificou-se
-                uma tendência de redução, chegando ao menor valor da série,
-                5,1%, no quarto trimestre de 2025. Conclui-se que a taxa de
-                desocupação apresentou mudanças expressivas ao longo do período,
-                evidenciando diferentes fases do mercado de trabalho brasileiro.
-            </p>
-        </div>
-
         <p>
+            Este artigo apresenta uma análise exploratória da evolução da
+            taxa de desocupação no Brasil, utilizando dados oficiais da
+            Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD
+            Contínua), disponibilizados pelo Instituto Brasileiro de
+            Geografia e Estatística (IBGE), por meio da plataforma SIDRA,
+            tabela 4099. O estudo contempla 58 observações trimestrais,
+            abrangendo o período do primeiro trimestre de 2012 ao segundo
+            trimestre de 2026. O desenvolvimento foi realizado em Python,
+            com um pipeline de coleta, armazenamento e tratamento dos dados,
+            utilizando as bibliotecas Pandas e Requests. A análise
+            exploratória empregou estatísticas descritivas e visualizações
+            construídas com Matplotlib e Seaborn. Os resultados indicaram
+            média geral de 9,57% e desvio padrão de 2,87 pontos percentuais.
+            A maior taxa observada foi de 14,9%, no terceiro trimestre de
+            2020, enquanto a menor foi de 5,1%, no quarto trimestre de 2025.
+            A série evidencia elevação da desocupação em períodos de crise
+            e redução nos anos mais recentes. O projeto também organiza
+            código, dados e metadados com o objetivo de favorecer a
+            reprodutibilidade e a aplicação dos princípios FAIR.
+        </p>
+
+        <div class="palavras-chave">
             <strong>Palavras-chave:</strong>
-            Desocupação; Mercado de Trabalho; Brasil; IBGE; Análise de Dados.
-        </p>
-    </section>
-
-    <section>
-        <h2>Abstract</h2>
-
-        <div class="resumo">
-            <p>
-                This study analyzes the evolution of the unemployment rate
-                in Brazil using data from the Continuous National Household
-                Sample Survey (PNAD Contínua), provided by the Brazilian
-                Institute of Geography and Statistics (IBGE), through the
-                SIDRA database, table 4099. The objective is to identify
-                unemployment trends over the analyzed period, compare annual
-                averages, and identify the highest and lowest recorded rates.
-                The methodology is based on a quantitative and descriptive
-                approach, using data collection, organization, processing,
-                and analysis with Python, Pandas, Matplotlib, and Seaborn.
-                The results indicate a decline in the unemployment rate
-                between 2012 and 2014, followed by an increase, with high
-                levels between 2016 and 2021. The highest observed rate was
-                14.9% in the third quarter of 2020. After this period, a
-                downward trend was identified, reaching the lowest value
-                in the series, 5.1%, in the fourth quarter of 2025.
-                The findings demonstrate significant changes in the Brazilian
-                labor market throughout the analyzed period.
-            </p>
+            Taxa de Desocupação; PNAD Contínua; IBGE; Python;
+            Análise de Dados; Princípios FAIR.
         </div>
-
-        <p>
-            <strong>Keywords:</strong>
-            Unemployment; Labor Market; Brazil; IBGE; Data Analysis.
-        </p>
     </section>
 
-    <section>
+    <nav class="sumario">
+        <h2>Sumário</h2>
+        <ol>
+            <li><a href="#introducao">Introdução</a></li>
+            <li><a href="#metodologia">Metodologia e Pipeline de Dados</a></li>
+            <li><a href="#resultados">Resultados e Discussão Visual</a></li>
+            <li><a href="#conclusao">Conclusão</a></li>
+            <li><a href="#fair">Disponibilidade dos Dados e Princípios FAIR</a></li>
+            <li><a href="#referencias">Referências</a></li>
+        </ol>
+    </nav>
+
+    <section id="introducao">
         <h2>1. Introdução</h2>
 
         <p>
             O mercado de trabalho é um importante indicador das condições
             econômicas e sociais de um país. Entre os indicadores utilizados
             para acompanhar sua situação, destaca-se a taxa de desocupação,
-            que representa a proporção de pessoas desocupadas em relação
-            à força de trabalho.
+            que representa a proporção de pessoas desocupadas em relação à
+            força de trabalho.
         </p>
 
         <p>
             No Brasil, o Instituto Brasileiro de Geografia e Estatística
-            (IBGE) realiza a Pesquisa Nacional por Amostra de Domicílios
-            Contínua (PNAD Contínua), responsável por fornecer informações
-            sobre as características do mercado de trabalho brasileiro.
+            (IBGE), por meio da Pesquisa Nacional por Amostra de Domicílios
+            Contínua (PNAD Contínua), disponibiliza informações periódicas
+            sobre o mercado de trabalho. Esses dados permitem acompanhar
+            mudanças na ocupação e na desocupação ao longo do tempo.
         </p>
 
         <p>
-            Diante da importância desse indicador, este estudo busca analisar
-            a evolução da taxa de desocupação no Brasil, identificando
-            tendências, variações e períodos de maior e menor desocupação.
+            A disponibilidade de dados públicos possibilita a realização
+            de estudos quantitativos e análises reproduzíveis. Entretanto,
+            para que essas informações sejam utilizadas de maneira
+            consistente, é necessário realizar procedimentos de coleta,
+            organização, tratamento e visualização dos dados.
         </p>
 
-        <p>Para orientar a pesquisa, foram definidas as seguintes questões:</p>
+        <p>
+            Nesse contexto, este trabalho tem como objetivo analisar a
+            evolução da taxa de desocupação no Brasil, utilizando dados
+            trimestrais da PNAD Contínua, disponibilizados na plataforma
+            SIDRA do IBGE, tabela 4099.
+        </p>
+
+        <p>
+            Para orientar a investigação, foram definidas três questões
+            de pesquisa:
+        </p>
+
+        <ol>
+            <li>
+                Como a taxa de desocupação brasileira evoluiu ao longo
+                do período analisado?
+            </li>
+            <li>
+                Quais diferenças podem ser observadas nas médias anuais
+                da taxa de desocupação?
+            </li>
+            <li>
+                Qual é a distribuição dos valores observados e quais
+                foram os períodos de maior e menor desocupação?
+            </li>
+        </ol>
+    </section>
+
+    <section id="metodologia">
+        <h2>2. Metodologia e Pipeline de Dados</h2>
+
+        <h3>2.1 Fonte e obtenção dos dados</h3>
+
+        <p>
+            Os dados utilizados foram obtidos por meio da API do Sistema
+            IBGE de Recuperação Automática (SIDRA), referente à tabela 4099,
+            que apresenta informações da PNAD Contínua sobre a taxa de
+            desocupação no Brasil.
+        </p>
+
+        <p>
+            A consulta contempla a abrangência nacional e os períodos
+            trimestrais disponíveis na série utilizada. Os dados originais
+            são armazenados em formato JSON, preservando o conteúdo
+            retornado pela fonte oficial.
+        </p>
+
+        <h3>2.2 Tecnologias utilizadas</h3>
+
+        <p>
+            O desenvolvimento foi realizado utilizando a linguagem Python
+            e as seguintes bibliotecas:
+        </p>
+
+        <ul>
+            <li><strong>Pandas:</strong> organização e tratamento dos dados;</li>
+            <li><strong>Requests:</strong> comunicação com a API do IBGE;</li>
+            <li><strong>Matplotlib:</strong> elaboração de gráficos;</li>
+            <li><strong>Seaborn:</strong> visualizações estatísticas;</li>
+            <li><strong>Jupyter Notebook:</strong> execução da análise exploratória.</li>
+        </ul>
+
+        <h3>2.3 Etapas do pipeline</h3>
+
+        <p>
+            O processo de engenharia de dados foi organizado em etapas
+            sequenciais:
+        </p>
+
+        <ol>
+            <li>
+                <strong>Coleta:</strong> consulta aos dados da tabela 4099
+                por meio da API SIDRA.
+            </li>
+            <li>
+                <strong>Armazenamento bruto:</strong> gravação dos dados
+                originais em arquivo JSON na pasta <code>data/raw</code>.
+            </li>
+            <li>
+                <strong>Tratamento:</strong> conversão dos dados para
+                estrutura tabular, identificação de ano e trimestre,
+                conversão dos valores numéricos e remoção de registros
+                inválidos.
+            </li>
+            <li>
+                <strong>Organização:</strong> criação da variável de data
+                e ordenação cronológica dos registros.
+            </li>
+            <li>
+                <strong>Armazenamento processado:</strong> exportação da
+                base tratada em CSV compactado com gzip.
+            </li>
+            <li>
+                <strong>Análise:</strong> cálculo de estatísticas
+                descritivas e elaboração das visualizações.
+            </li>
+        </ol>
+
+        <h3>2.4 Estrutura dos dados</h3>
+
+        <p>
+            A base processada possui quatro variáveis principais:
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Variável</th>
+                    <th>Descrição</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>data</td>
+                    <td>Data de início do trimestre</td>
+                    <td>Data</td>
+                </tr>
+                <tr>
+                    <td>ano</td>
+                    <td>Ano de referência</td>
+                    <td>Inteiro</td>
+                </tr>
+                <tr>
+                    <td>trimestre</td>
+                    <td>Trimestre de referência (1 a 4)</td>
+                    <td>Inteiro</td>
+                </tr>
+                <tr>
+                    <td>taxa_desocupacao</td>
+                    <td>Taxa de desocupação em percentual</td>
+                    <td>Decimal</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            A análise foi realizada sobre 58 registros trimestrais,
+            compreendendo o período do primeiro trimestre de 2012 ao
+            segundo trimestre de 2026.
+        </p>
+    </section>
+
+    <section id="resultados">
+        <h2>3. Resultados e Discussão Visual</h2>
+
+        <h3>3.1 Estatísticas descritivas</h3>
+
+        <p>
+            A análise descritiva permitiu identificar as características
+            gerais da série histórica. Considerando os 58 registros,
+            a taxa de desocupação apresentou média de 9,57%, mediana de
+            8,75% e desvio padrão de aproximadamente 2,87 pontos
+            percentuais.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Indicador</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Quantidade de registros</td>
+                    <td>58</td>
+                </tr>
+                <tr>
+                    <td>Média</td>
+                    <td>9,57%</td>
+                </tr>
+                <tr>
+                    <td>Mediana</td>
+                    <td>8,75%</td>
+                </tr>
+                <tr>
+                    <td>Desvio padrão</td>
+                    <td>2,87</td>
+                </tr>
+                <tr>
+                    <td>Menor taxa</td>
+                    <td>5,1%</td>
+                </tr>
+                <tr>
+                    <td>Maior taxa</td>
+                    <td>14,9%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>3.2 Evolução histórica da taxa de desocupação</h3>
+
+        <p>
+            A Figura 1 apresenta a evolução trimestral da taxa de
+            desocupação no Brasil. A visualização permite observar
+            períodos de elevação e redução do indicador ao longo
+            da série histórica.
+        </p>
+
+        <figure>
+            <img src="assets/evolucao_historica.png"
+                 alt="Gráfico da evolução histórica da taxa de desocupação no Brasil">
+            <figcaption>
+                Figura 1 — Evolução trimestral da taxa de desocupação no Brasil.
+                Fonte: Elaboração própria com dados do IBGE.
+            </figcaption>
+        </figure>
+
+        <p>
+            Observa-se uma elevação expressiva da desocupação a partir
+            de 2015, seguida de um período de taxas elevadas. O maior
+            valor da série foi de 14,9%, registrado no terceiro
+            trimestre de 2020. Nos períodos posteriores, verifica-se
+            uma trajetória de redução, especialmente a partir de 2022.
+        </p>
+
+        <h3>3.3 Comparação das médias anuais</h3>
+
+        <p>
+            A Figura 2 apresenta as médias anuais da taxa de desocupação.
+            Essa comparação permite identificar diferenças entre os
+            anos e observar mudanças no comportamento do indicador.
+        </p>
+
+        <figure>
+            <img src="assets/media_anual.png"
+                 alt="Gráfico das médias anuais da taxa de desocupação">
+            <figcaption>
+                Figura 2 — Média anual da taxa de desocupação.
+                Fonte: Elaboração própria com dados do IBGE.
+            </figcaption>
+        </figure>
+
+        <p>
+            As médias anuais indicam crescimento da desocupação entre
+            2015 e 2017, período em que o indicador atingiu patamares
+            elevados. Em 2020, a média anual chegou a aproximadamente
+            13,78%. A partir de 2022, observa-se uma redução progressiva,
+            alcançando média de aproximadamente 5,88% em 2025.
+        </p>
+
+        <p>
+            O maior aumento da média anual ocorreu entre 2015 e 2016,
+            com aproximadamente 2,97 pontos percentuais. A maior redução
+            ocorreu entre 2021 e 2022, com queda de aproximadamente
+            3,97 pontos percentuais.
+        </p>
+
+        <h3>3.4 Distribuição das taxas</h3>
+
+        <p>
+            A Figura 3 apresenta a distribuição dos valores da taxa
+            de desocupação observados durante o período analisado.
+            O histograma permite visualizar a concentração das
+            observações em diferentes faixas do indicador.
+        </p>
+
+        <figure>
+            <img src="assets/distribuicao_taxas.png"
+                 alt="Histograma da distribuição da taxa de desocupação">
+            <figcaption>
+                Figura 3 — Distribuição da taxa de desocupação.
+                Fonte: Elaboração própria com dados do IBGE.
+            </figcaption>
+        </figure>
+
+        <p>
+            A distribuição evidencia a ocorrência de valores em
+            diferentes níveis de desocupação, refletindo as mudanças
+            observadas na série histórica. A presença de taxas mais
+            elevadas está relacionada aos períodos de maior pressão
+            sobre o mercado de trabalho.
+        </p>
+
+        <div class="destaque">
+            <strong>Observação sobre 2026:</strong>
+            o período analisado para 2026 contempla apenas os dois
+            primeiros trimestres. Portanto, sua média parcial não deve
+            ser comparada diretamente com as médias dos anos completos.
+        </div>
+    </section>
+
+    <section id="conclusao">
+        <h2>4. Conclusão</h2>
+
+        <p>
+            O estudo permitiu analisar a evolução da taxa de desocupação
+            no Brasil por meio de dados oficiais da PNAD Contínua,
+            disponibilizados pelo IBGE. A análise de 58 observações
+            trimestrais demonstrou mudanças significativas no indicador
+            ao longo do período estudado.
+        </p>
+
+        <p>
+            Os resultados identificaram a maior taxa de desocupação
+            de 14,9% no terceiro trimestre de 2020 e a menor taxa de
+            5,1% no quarto trimestre de 2025. Também foi possível
+            observar a elevação das médias anuais em determinados
+            períodos e a redução progressiva registrada nos anos
+            mais recentes.
+        </p>
+
+        <p>
+            A utilização de Python possibilitou automatizar a coleta,
+            o tratamento e a análise dos dados, além de produzir
+            visualizações que facilitaram a interpretação dos
+            resultados.
+        </p>
+
+        <p>
+            Conclui-se que o pipeline desenvolvido contribui para a
+            organização e a reprodutibilidade do estudo, demonstrando
+            a importância da utilização de dados públicos e de
+            procedimentos documentados em projetos de análise de dados.
+        </p>
+    </section>
+
+    <section id="fair">
+        <h2>5. Disponibilidade dos Dados e Princípios FAIR</h2>
+
+        <h3>5.1 Disponibilidade dos dados e código</h3>
+
+        <p>
+            O código-fonte, os dados coletados, os dados processados,
+            o notebook de análise e a documentação estão organizados
+            no repositório público do GitHub:
+        </p>
+
+        <p>
+            <a href="https://github.com/felipebarbosa-ai/analise-desemprego-brasil"
+               target="_blank">
+                https://github.com/felipebarbosa-ai/analise-desemprego-brasil
+            </a>
+        </p>
+
+        <h3>5.2 Declaração de aderência aos princípios FAIR</h3>
 
         <ul>
             <li>
-                RQ1: Como a taxa de desocupação evoluiu ao longo do período analisado?
+                <strong>Findable (Localizável):</strong>
+                o projeto possui repositório identificado, README
+                descritivo e dicionário de dados com informações
+                sobre a origem e a estrutura dos arquivos.
             </li>
             <li>
-                RQ2: Quais anos apresentaram as maiores e menores médias de desocupação?
+                <strong>Accessible (Acessível):</strong>
+                o código e os arquivos disponibilizados podem ser
+                acessados publicamente pelo repositório GitHub.
             </li>
             <li>
-                RQ3: Quais foram as principais variações anuais e os valores extremos registrados?
+                <strong>Interoperable (Interoperável):</strong>
+                os dados são armazenados em formatos amplamente
+                utilizados, como JSON e CSV, acompanhados de
+                documentação em Markdown.
+            </li>
+            <li>
+                <strong>Reusable (Reutilizável):</strong>
+                o projeto disponibiliza scripts, notebook,
+                documentação e dependências com versões especificadas,
+                facilitando a reprodução e a reutilização da análise.
             </li>
         </ul>
 
         <p>
-            O objetivo geral é analisar o comportamento da taxa de desocupação
-            brasileira por meio de técnicas de análise exploratória e
-            visualização de dados.
+            O código-fonte está disponibilizado sob a licença MIT.
+            Os dados de origem são atribuídos ao IBGE, respeitando
+            a identificação da instituição responsável por sua
+            produção e divulgação.
         </p>
     </section>
 
-    <section>
-        <h2>2. Metodologia</h2>
+    <section id="referencias">
+        <h2>6. Referências</h2>
 
-        <p>
-            A pesquisa possui abordagem quantitativa e caráter descritivo.
-            Foram utilizados dados da PNAD Contínua, disponibilizados pelo
-            IBGE por meio do Sistema IBGE de Recuperação Automática (SIDRA),
-            especificamente a tabela 4099.
-        </p>
+        <ol class="referencias">
+            <li>
+                INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE).
+                <strong>Indicadores: Desemprego.</strong>
+                Disponível em:
+                <a href="https://www.ibge.gov.br/indicadores#desemprego"
+                   target="_blank">
+                    https://www.ibge.gov.br/indicadores#desemprego
+                </a>.
+                Acesso em: 16 nov. 2026.
+            </li>
 
-        <p>
-            Os dados foram organizados e processados utilizando a linguagem
-            Python. Para a manipulação das informações foi utilizada a
-            biblioteca Pandas. As visualizações foram desenvolvidas com
-            Matplotlib e Seaborn.
-        </p>
+            <li>
+                INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE).
+                <strong>Sistema IBGE de Recuperação Automática (SIDRA):
+                Tabela 4099.</strong>
+                Disponível em:
+                <a href="https://sidra.ibge.gov.br/tabela/4099"
+                   target="_blank">
+                    https://sidra.ibge.gov.br/tabela/4099
+                </a>.
+                Acesso em: 16 nov. 2026.
+            </li>
 
-        <p>
-            O processo de análise foi dividido em etapas: obtenção dos dados,
-            preparação e organização, cálculo de estatísticas descritivas,
-            comparação das médias anuais, identificação dos valores máximos
-            e mínimos e construção de gráficos.
-        </p>
+            <li>
+                WILKINSON, Mark D. et al.
+                The FAIR Guiding Principles for scientific data
+                management and stewardship.
+                <strong>Scientific Data</strong>, v. 3, 2016.
+                DOI: 10.1038/sdata.2016.18.
+            </li>
 
-        <p>
-            A análise considerou 58 observações trimestrais, abrangendo
-            o período de 2012 até os dados disponíveis de 2026.
-            Para a comparação anual, foram calculadas as médias da taxa
-            de desocupação e suas variações em pontos percentuais.
-        </p>
-    </section>
-
-    <section>
-        <h2>3. Resultados e Discussão</h2>
-
-        <h3>3.1 Evolução histórica da taxa de desocupação</h3>
-
-        <p>
-            A análise histórica demonstra que a taxa de desocupação passou
-            por diferentes fases. Entre 2012 e 2014, observou-se uma redução
-            nos valores. A partir de 2015, ocorreu um crescimento, com níveis
-            elevados entre 2016 e 2021.
-        </p>
-
-        <p>
-            O maior valor identificado foi de
-            <span class="destaque">14,9%</span>, registrado no terceiro
-            trimestre de 2020. Posteriormente, os dados demonstram uma
-            redução da taxa de desocupação, que atingiu 5,1% no quarto
-            trimestre de 2025.
-        </p>
-
-        <div class="figura">
-            <h3>Figura 1 – Evolução histórica da taxa de desocupação</h3>
-
-            <img src="assets/evolucao_historica.png"
-                 alt="Gráfico da evolução histórica da taxa de desocupação no Brasil">
-
-            <p class="legenda">
-                Fonte: Elaborado pelos autores com dados do IBGE (PNAD Contínua).
-            </p>
-        </div>
-
-        <h3>3.2 Comparação das médias anuais</h3>
-
-        <p>
-            A comparação das médias anuais identificou 2020 como o ano
-            de maior média de desocupação, com 13,78%. Em seguida,
-            destacam-se 2017, com 12,85%, e 2018, com 12,38%.
-        </p>
-
-        <p>
-            Entre os anos completos apresentados, 2025 registrou a menor
-            média anual, com 5,88%. O ano de 2026 apresentou média de 5,75%,
-            porém seus dados são parciais e, portanto, não devem ser
-            comparados diretamente com os anos completos.
-        </p>
-
-        <div class="figura">
-            <h3>Figura 2 – Média anual da taxa de desocupação</h3>
-
-            <img src="assets/media_anual.png"
-                 alt="Gráfico da média anual da taxa de desocupação">
-
-            <p class="legenda">
-                Fonte: Elaborado pelos autores com dados do IBGE (PNAD Contínua).
-            </p>
-        </div>
-
-        <h3>3.3 Distribuição das taxas de desocupação</h3>
-
-        <p>
-            A distribuição das taxas permite observar a frequência dos
-            diferentes valores registrados durante o período analisado.
-            Essa visualização complementa a análise histórica e permite
-            compreender a concentração das observações em determinadas
-            faixas de desocupação.
-        </p>
-
-        <div class="figura">
-            <h3>Figura 3 – Distribuição das taxas de desocupação</h3>
-
-            <img src="assets/distribuicao_taxas.png"
-                 alt="Histograma da distribuição das taxas de desocupação">
-
-            <p class="legenda">
-                Fonte: Elaborado pelos autores com dados do IBGE (PNAD Contínua).
-            </p>
-        </div>
-
-        <h3>3.4 Variação anual</h3>
-
-        <p>
-            A maior elevação da média anual ocorreu entre 2015 e 2016,
-            com aumento de 2,97 pontos percentuais. Por outro lado,
-            a maior redução ocorreu entre 2021 e 2022, com queda de
-            3,97 pontos percentuais.
-        </p>
-
-        <p>
-            Esses resultados demonstram mudanças importantes no
-            comportamento da desocupação brasileira ao longo do período,
-            especialmente durante os anos de maiores taxas e no período
-            posterior a 2021.
-        </p>
-    </section>
-
-    <section>
-        <h2>4. Conclusão</h2>
-
-        <p>
-            A análise permitiu identificar mudanças significativas na taxa
-            de desocupação do Brasil ao longo do período estudado. Os
-            resultados apontaram crescimento da desocupação a partir de
-            2015, manutenção de níveis elevados entre 2016 e 2021 e redução
-            nos anos seguintes.
-        </p>
-
-        <p>
-            O maior valor registrado foi de 14,9%, no terceiro trimestre
-            de 2020, enquanto o menor foi de 5,1%, no quarto trimestre
-            de 2025. A comparação anual também evidenciou uma redução
-            expressiva entre 2021 e 2022.
-        </p>
-
-        <p>
-            Conclui-se que a utilização de ferramentas de análise de dados
-            possibilitou identificar tendências e variações relevantes
-            no mercado de trabalho brasileiro. Como limitação, destaca-se
-            que os dados de 2026 são parciais, sendo necessária cautela
-            em sua comparação com os anos completos.
-        </p>
-    </section>
-
-    <section>
-        <h2>5. Declaração de conformidade FAIR</h2>
-
-        <p>
-            O projeto busca seguir os princípios FAIR (Findable, Accessible,
-            Interoperable e Reusable), disponibilizando os dados utilizados,
-            os códigos de processamento e a documentação em um repositório
-            público no GitHub. A organização dos arquivos, a identificação
-            da fonte dos dados e a documentação das etapas de processamento
-            contribuem para a localização, o acesso, a interoperabilidade
-            e a reutilização dos materiais.
-        </p>
-    </section>
-
-    <section>
-        <h2>Referências</h2>
-
-        <p>
-            INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE).
-            Indicadores de trabalho: taxa de desocupação.
-            Disponível em:
-            <a href="https://www.ibge.gov.br/indicadores#desemprego"
-               target="_blank" rel="noopener noreferrer">
-                https://www.ibge.gov.br/indicadores#desemprego
-            </a>.
-            Acesso em: 16 nov. 2026.
-        </p>
-
-        <p>
-            INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE).
-            Sistema IBGE de Recuperação Automática (SIDRA).
-            Tabela 4099 – Pesquisa Nacional por Amostra de Domicílios Contínua.
-            Disponível em:
-            <a href="https://sidra.ibge.gov.br/tabela/4099"
-               target="_blank" rel="noopener noreferrer">
-                https://sidra.ibge.gov.br/tabela/4099
-            </a>.
-        </p>
+            <li>
+                MCKINNEY, Wes.
+                <strong>Python for Data Analysis: Data Wrangling
+                with pandas, NumPy, and Jupyter.</strong>
+                3. ed. O'Reilly Media, 2022.
+            </li>
+        </ol>
     </section>
 
     <footer>
-        <p>
-            Projeto acadêmico desenvolvido no curso de Sistemas de Informação
-            da Unilasalle.
-        </p>
-        <p>Felipe Barbosa da Silva e Luis Fernando Dantas.</p>
+        Análise da Evolução da Taxa de Desocupação no Brasil<br>
+        Felipe Barbosa da Silva e Luis Fernando Dantas — Unilasalle<br>
+        Projeto acadêmico desenvolvido em Python.
     </footer>
 
-</main>
+</div>
 
 </body>
 </html>
