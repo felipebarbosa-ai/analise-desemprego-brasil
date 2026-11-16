@@ -1,0 +1,13 @@
+{
+    "quantidade_registros": 58,
+    "primeiro_periodo": "2012-01-01",
+    "ultimo_periodo": "2026-04-01",
+    "media": 9.56551724137931,
+    "mediana": 8.75,
+    "desvio_padrao": 2.8665372302972054,
+    "menor_taxa": 5.1,
+    "maior_taxa": 14.9,
+    "data_menor_taxa": "2025-10-01",
+    "data_maior_taxa": "2020-07-01",
+    "data_coleta": "2026-11-16T23:27:57.718760+00:00"
+}
