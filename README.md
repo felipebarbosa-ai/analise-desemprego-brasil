@@ -1,12 +1,12 @@
-# analise-desemprego-brasil
-Análise da evolução da taxa de desocupação no Brasil utilizando dados da PNAD Contínua/IBGE. Visibility
 # Análise da Evolução da Taxa de Desocupação no Brasil
+
+Projeto acadêmico desenvolvido em Python para analisar a evolução da taxa de desocupação no Brasil, utilizando dados oficiais da PNAD Contínua, disponibilizados pelo Instituto Brasileiro de Geografia e Estatística (IBGE).
 
 ## 1. Sobre o projeto
 
-Este projeto tem como objetivo analisar a evolução da taxa de desocupação no Brasil, utilizando dados oficiais da Pesquisa Nacional por Amostra de Domicílios Contínua (PNAD Contínua), disponibilizados pelo Instituto Brasileiro de Geografia e Estatística (IBGE).
+Este projeto tem como objetivo analisar a evolução da taxa de desocupação no Brasil, identificando tendências históricas, variações ao longo dos anos e a distribuição dos valores observados.
 
-A análise busca identificar tendências históricas, variações ao longo dos anos e a distribuição da taxa de desocupação no período estudado.
+A análise utiliza dados trimestrais da PNAD Contínua, obtidos por meio da API SIDRA do IBGE, tabela 4099.
 
 ## 2. Autores
 
@@ -14,7 +14,8 @@ A análise busca identificar tendências históricas, variações ao longo dos a
 - Luis Fernando Dantas
 
 **Instituição:** Unilasalle  
-**Curso:** Sistemas de Informação
+**Curso:** Sistemas de Informação  
+**Disciplina:** Linguagens de Programação — 6º Período
 
 ## 3. Fonte dos dados
 
@@ -24,8 +25,12 @@ Os dados utilizados foram obtidos por meio da API SIDRA do IBGE.
 - **Pesquisa:** PNAD Contínua.
 - **Tabela:** 4099.
 - **Indicador:** Taxa de desocupação.
+- **Abrangência:** Brasil.
+- **Periodicidade:** Trimestral.
 
-Fonte: https://www.ibge.gov.br/indicadores#desemprego
+Fonte: [IBGE — Indicadores de Desemprego](https://www.ibge.gov.br/indicadores#desemprego)
+
+Tabela utilizada: [SIDRA — Tabela 4099](https://sidra.ibge.gov.br/tabela/4099)
 
 ## 4. Tecnologias utilizadas
 
@@ -66,7 +71,7 @@ O desenvolvimento foi dividido nas seguintes etapas:
 1. **Coleta:** obtenção dos dados da PNAD Contínua por meio da API SIDRA.
 2. **Armazenamento bruto:** salvamento dos dados originais em formato JSON.
 3. **Tratamento:** organização dos dados, conversão dos tipos e identificação dos períodos.
-4. **Armazenamento processado:** exportação dos dados tratados em CSV compactado.
+4. **Armazenamento processado:** exportação dos dados tratados em CSV compactado com gzip.
 5. **Análise exploratória:** cálculo de estatísticas descritivas e análise da evolução histórica.
 6. **Visualização:** elaboração de gráficos para facilitar a interpretação dos resultados.
 
@@ -75,7 +80,7 @@ O desenvolvimento foi dividido nas seguintes etapas:
 Clone o repositório:
 
 ```bash
-git clone URL_DO_REPOSITORIO
+git clone https://github.com/felipebarbosa-ai/analise-desemprego-brasil.git
 ```
 
 Entre na pasta do projeto:
@@ -104,18 +109,23 @@ notebooks/analise_exploratoria.ipynb
 
 ## 8. Resultados
 
-A análise exploratória identificou:
+A análise exploratória contemplou 58 registros trimestrais, abrangendo o período do primeiro trimestre de 2012 ao segundo trimestre de 2026.
 
-- 58 registros trimestrais.
-- Média geral da taxa de desocupação de aproximadamente 9,57%.
-- Maior taxa observada de 14,9%.
-- Menor taxa observada de 5,1%.
+Principais resultados:
 
-Os resultados e gráficos completos estão disponíveis no artigo acadêmico em HTML, localizado em `docs/index.html`.
+- **Média geral:** 9,57%.
+- **Mediana:** 8,75%.
+- **Desvio padrão:** aproximadamente 2,87 pontos percentuais.
+- **Maior taxa:** 14,9%, no terceiro trimestre de 2020.
+- **Menor taxa:** 5,1%, no quarto trimestre de 2025.
+
+Os resultados foram apresentados por meio de gráficos de evolução histórica, médias anuais e distribuição das taxas.
+
+Observação: o ano de 2026 contempla apenas os dois primeiros trimestres da série analisada.
 
 ## 9. Dicionário de dados
 
-As informações sobre as variáveis utilizadas, seus significados e formatos estão documentadas no arquivo:
+As informações sobre as variáveis utilizadas, seus significados, formatos e origem estão documentadas no arquivo:
 
 `data/data_dictionary.md`
 
@@ -125,10 +135,19 @@ Este projeto utiliza a licença MIT para o código-fonte. Consulte o arquivo `LI
 
 ## 11. Reprodutibilidade e princípios FAIR
 
-O projeto busca seguir os princípios FAIR, promovendo a localização, acessibilidade, interoperabilidade e reutilização dos dados e códigos utilizados.
+O projeto busca seguir os princípios FAIR:
 
-O código, os dados processados e a documentação estão organizados no repositório para facilitar a reprodução da análise.
+- **Findable (Localizável):** organização e identificação dos arquivos e documentação.
+- **Accessible (Acessível):** disponibilização pública do código e dos dados no GitHub.
+- **Interoperable (Interoperável):** utilização de formatos como JSON, CSV e Markdown.
+- **Reusable (Reutilizável):** disponibilização dos scripts, notebook, documentação e dependências para facilitar a reprodução da análise.
 
 ## 12. Publicação
 
-O artigo acadêmico pode ser acessado pelo arquivo ``. A publicação online será disponibilizada por meio do GitHub Pages.
+O artigo acadêmico está publicado no GitHub Pages e pode ser acessado pelo link:
+
+**[Acessar artigo acadêmico — Análise da Evolução da Taxa de Desocupação no Brasil](https://felipebarbosa-ai.github.io/analise-desemprego-brasil/)**
+
+O código-fonte, os dados e a documentação estão disponíveis no repositório:
+
+[https://github.com/felipebarbosa-ai/analise-desemprego-brasil](https://github.com/felipebarbosa-ai/analise-desemprego-brasil)
